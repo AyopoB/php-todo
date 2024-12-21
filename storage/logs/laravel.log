@@ -1,0 +1,14 @@
+[2024-12-21 15:36:20] production.ERROR: ErrorException: file_put_contents(/home/ubuntu/php-todo/bootstrap/cache/services.php): failed to open stream: No such file or directory in /home/ubuntu/php-todo/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:81
+Stack trace:
+#0 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/ubuntu/php-todo/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(81): file_put_contents()
+#2 /home/ubuntu/php-todo/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(187): Illuminate\Filesystem\Filesystem->put()
+#3 /home/ubuntu/php-todo/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(135): Illuminate\Foundation\ProviderRepository->writeManifest()
+#4 /home/ubuntu/php-todo/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate\Foundation\ProviderRepository->compileManifest()
+#5 /home/ubuntu/php-todo/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(507): Illuminate\Foundation\ProviderRepository->load()
+#6 /home/ubuntu/php-todo/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#7 /home/ubuntu/php-todo/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(203): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap()
+#8 /home/ubuntu/php-todo/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(208): Illuminate\Foundation\Application->bootstrapWith()
+#9 /home/ubuntu/php-todo/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(105): Illuminate\Foundation\Console\Kernel->bootstrap()
+#10 /home/ubuntu/php-todo/artisan(35): Illuminate\Foundation\Console\Kernel->handle()
+#11 {main}  
