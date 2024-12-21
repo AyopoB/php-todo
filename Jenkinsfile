@@ -17,9 +17,14 @@ pipeline {
     }
     stage('Check DB Connection') {
       steps {
-        sh 'mysql -h ${DB_HOST} -u ${DB_USERNAME} -p${DB_PASSWORD} -e "SELECT 1;"'
+        script {
+          echo "DB_HOST: ${DB_HOST}"
+          echo "DB_USERNAME: ${DB_USERNAME}"
+          sh 'mysql -h ${DB_HOST} -u ${DB_USERNAME} -p${DB_PASSWORD} -e "SELECT 1;"'
+        }
       }
     }
+
 
     stage('Prepare Dependencies') {
       steps {
