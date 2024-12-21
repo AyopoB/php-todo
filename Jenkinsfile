@@ -25,6 +25,8 @@ pipeline {
           mv .env.sample .env
         fi
         '''
+        sh 'mkdir -p bootstrap/cache'
+        sh 'chmod -R 775 bootstrap/cache'
         sh 'composer install --no-dev --optimize-autoloader'
         sh 'php artisan migrate --force'
         sh 'php artisan db:seed --force'
