@@ -15,6 +15,11 @@ pipeline {
         git(branch: 'main', url: 'https://github.com/gashawgedef/php-todo.git')
       }
     }
+    stage('Check DB Connection') {
+      steps {
+        sh 'mysql -h ${DB_HOST} -u ${DB_USERNAME} -p${DB_PASSWORD} -e "SELECT 1;"'
+      }
+    }
 
     stage('Prepare Dependencies') {
       steps {
