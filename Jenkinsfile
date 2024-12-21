@@ -15,9 +15,15 @@ pipeline {
         }
         stage('Prepare Dependencies') {
             steps {
-                sh 'mkdir -p bootstrap/cache'
-                sh 'chmod -R 775 bootstrap/cache'
                 sh 'mv .env.sample .env'
+                sh '''
+                    mkdir -p bootstrap/cache
+                    mkdir -p storage/framework/sessions
+                    mkdir -p storage/framework/views
+                    mkdir -p storage/framework/cache                        
+                    chown -R jenkins:jenkins bootstrap storage 
+                    chmod -R 775 bootstrap storage 
+                '''
                 sh 'composer install'
                 sh 'php artisan migrate'
                 sh 'php artisan db:seed'
