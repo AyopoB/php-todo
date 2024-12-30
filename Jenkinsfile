@@ -93,11 +93,11 @@ pipeline {
                 scannerHome = tool 'SonarQubeScanner'
                 JAVA_HOME = '/usr/lib/jvm/java-11-openjdk-amd64'
                 PATH = "${JAVA_HOME}/bin:${PATH}"
-                
+
             }
             steps {
                 withSonarQubeEnv('sonarqube') {
-                    sh "${scannerHome}/bin/sonar-scanner -Djava.opts='--add-opens java.base/java.lang=ALL-UNNAMED'"
+                    sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
         }
