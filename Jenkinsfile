@@ -90,6 +90,8 @@ pipeline {
         
 
 
+
+
         stage('SonarQube Quality Gate') {
             environment {
                 scannerHome = tool 'SonarQubeScanner'
@@ -98,7 +100,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('sonarqube') {
-                    withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_TOKEN')]) {
+                    withCredentials([usernamePassword(credentialsId: 'sonarqube', usernameVariable: 'SONAR_USER', passwordVariable: 'SONAR_TOKEN')]) {
                         sh """
                         ${scannerHome}/bin/sonar-scanner \
                             -Dsonar.projectKey=php-todo \
@@ -110,6 +112,7 @@ pipeline {
                 }
             }
         }
+
 
     }
 }
