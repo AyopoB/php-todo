@@ -91,7 +91,7 @@ pipeline {
         stage('SonarQube Quality Gate') {
             environment {
                 scannerHome = tool 'SonarQubeScanner'
-                JAVA_HOME = '/usr/lib/jvm/java-11-openjdk-amd64'
+                JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
                 PATH = "${JAVA_HOME}/bin:${PATH}"
 
             }
