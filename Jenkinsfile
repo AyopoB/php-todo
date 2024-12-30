@@ -94,7 +94,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('sonarqube') {
-                    sh "${scannerHome}/bin/sonar-scanner"
+                    sh "${scannerHome}/bin/sonar-scanner -Djava.opts='--add-opens java.base/java.lang=ALL-UNNAMED'"
                 }
             }
         }
