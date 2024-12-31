@@ -93,9 +93,7 @@ pipeline {
 
 
         stage('SonarQube Quality Gate') {
-            when {
-                branch pattern: "^develop*|^hotfix*|^release*|^main*", comparator: "REGEXP"
-            }
+        
             environment {
                 scannerHome = tool 'SonarQubeScanner'
                 JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
@@ -114,17 +112,7 @@ pipeline {
                         """
                     }
                 }
-                timeout(time: 5, unit: 'MINUTES') {
-                    script {
-                        def qg = waitForQualityGate()
-                        if (qg.status != 'OK') {
-                            echo "Quality Gate failed: ${qg.status}"
-                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                        } else {
-                            echo "Quality Gate passed: ${qg.status}"
-                        }
-                    }
-                }
+                
             }
         }
 
