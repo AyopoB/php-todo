@@ -118,7 +118,14 @@ pipeline {
                 }
             }
         }
-
+        post {
+                always {
+                    echo 'Pipeline completed!'
+                }
+                failure {
+                    echo 'Pipeline failed!'
+                }
+            }
 
     }
 }
