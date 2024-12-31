@@ -93,6 +93,9 @@ pipeline {
 
 
         stage('SonarQube Quality Gate') {
+            when {
+        branch pattern: "^develop*|^hotfix*|^release*|^main*", comparator: "REGEXP"
+            }
             environment {
                 scannerHome = tool 'SonarQubeScanner'
                 JAVA_HOME = '/usr/lib/jvm/java-17-openjdk-amd64'
@@ -103,11 +106,15 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'sonarqube', usernameVariable: 'SONAR_USER', passwordVariable: 'SONAR_TOKEN')]) {
                         sh """
                         ${scannerHome}/bin/sonar-scanner \
+                            Dproject.settings=sonar-project.properties \
                             -Dsonar.projectKey=php-todo \
                             -Dsonar.sources=. \
                             -Dsonar.host.url=${env.SONAR_HOST_URL} \
                             -Dsonar.login=$SONAR_TOKEN
                         """
+                    }
+                timeout(time: 1, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
                     }
                 }
             }
