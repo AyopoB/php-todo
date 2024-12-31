@@ -106,7 +106,6 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'sonarqube', usernameVariable: 'SONAR_USER', passwordVariable: 'SONAR_TOKEN')]) {
                         sh """
                         ${scannerHome}/bin/sonar-scanner \
-                            -Dproject.settings=sonar-project.properties \
                             -Dsonar.projectKey=php-todo \
                             -Dsonar.sources=. \
                             -Dsonar.host.url=${env.SONAR_HOST_URL} \
